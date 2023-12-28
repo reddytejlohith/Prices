@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name - Pricing</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .pricing-card {
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card h2 {
+            color: #ecf0f1;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
+            color: #ecf0f1;
+            font-size: 16px;
+        }
+
+        .pricing-card .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 15px 0;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-card:hover .price {
+            color: #fff;
+        }
+
+        .btn {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .currency-select {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .currency-select label {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #333;
+        }
+
+        .currency-select select {
+            font-size: 16px;
+            padding: 8px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Project Name</h1>
+        <p>Choose the perfect plan for your needs</p>
+    </header>
+
+    <div class="currency-select">
+        <label for="currency">Select Currency:</label>
+        <select id="currency" onchange="changeCurrency()">
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="gbp">GBP</option>
+            <option value="inr">INR</option>
+        </select>
+    </div>
+
+    <div class="pricing-container">
+        <div class="pricing-card">
+            <h2>Basic</h2>
+            <p>For individuals</p>
+            <div class="price" id="basicPrice">$19.99</div>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+            <h2>Standard</h2>
+            <p>For small teams</p>
+            <div class="price" id="standardPrice">$49.99</div>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+            <h2>Premium</h2>
+            <p>For large teams</p>
+            <div class="price" id="premiumPrice">$99.99</div>
+            <a href="#" class="btn">Get Started</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Project Name. All rights reserved.
+    </footer>
+
+    <script>
+        window.onload = function () {
+            document.querySelector('.pricing-container').style.opacity = '1';
+        };
+
+        function changeCurrency() {
+            const currencySelect = document.getElementById('currency');
+            const basicPrice = document.getElementById('basicPrice');
+            const standardPrice = document.getElementById('standardPrice');
+            const premiumPrice = document.getElementById('premiumPrice');
+
+            const selectedCurrency = currencySelect.value;
+
+            switch (selectedCurrency) {
+                case 'eur':
+                    basicPrice.innerText = '€19.99';
+                    standardPrice.innerText = '€49.99';
+                    premiumPrice.innerText = '€99.99';
+                    break;
+                case 'gbp':
+                    basicPrice.innerText = '£19.99';
+                    standardPrice.innerText = '£49.99';
+                    premiumPrice.innerText = '£99.99';
+                    break;
+                case 'inr':
+                    basicPrice.innerText = '₹1499.99';
+                    standardPrice.innerText = '₹3499.99';
+                    premiumPrice.innerText = '₹6999.99';
+                    break;
+                default:
+                    basicPrice.innerText = '$19.99';
+                    standardPrice.innerText = '$49.99';
+                    premiumPrice.innerText = '$99.99';
+            }
+        }
+    </script>
+</body>
+</html>
